@@ -1,4 +1,4 @@
-# Lab 3: Custom Python Library using CUDA
+# Custom Python Library using CUDA
 
 ## Overview
 
