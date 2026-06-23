@@ -13,6 +13,10 @@ A CUDA-focused project for benchmarking matrix multiplication and image convolut
 
 ```text
 CUDA-Accelerated-Python-Library/
+├── native_image_convolution_sources/
+│   ├── image_convolution_cpu.c
+│   ├── image_convolution_cuda.cu
+│   └── image_convolution_cuda_python_bridge.cu
 ├── benchmarks/
 │   └── image_convolution/
 │       ├── case_01/
@@ -47,7 +51,11 @@ CUDA-Accelerated-Python-Library/
 
 Each benchmark case (`case_01`, `case_02`, `case_03`) is organized as:
 
-- `src/` - `convo.c`, `convo_cuda.cu`, `convo_cuda_lib.cu`
+- `native_image_convolution_sources/` (repository root) - canonical source files used by notebooks:
+  - `image_convolution_cpu.c`
+  - `image_convolution_cuda.cu`
+  - `image_convolution_cuda_python_bridge.cu`
+- `src/` - local case source snapshots
 - `notebooks/` - `image_convolution_benchmark.ipynb`
 - `data/input/` - `input.pgm`, `image.jpg`
 - `results/final/` - final output images (`out_*`)
@@ -61,26 +69,26 @@ From any convolution case directory, for example `benchmarks/image_convolution/c
 ### CPU Build
 
 ```bash
-gcc src/convo.c -O2 -o artifacts/bin/convo
+gcc ../../../native_image_convolution_sources/image_convolution_cpu.c -O2 -o artifacts/bin/image_convolution_cpu
 ```
 
 ### CUDA Build
 
 ```bash
-nvcc -O2 -arch=sm_75 src/convo_cuda.cu -o artifacts/bin/convo_cuda
+nvcc -O2 -arch=sm_75 ../../../native_image_convolution_sources/image_convolution_cuda.cu -o artifacts/bin/image_convolution_cuda
 ```
 
 ### Python-Interop Shared Library
 
 ```bash
-nvcc -Xcompiler -fPIC -shared src/convo_cuda_lib.cu -o artifacts/lib/libconvo.so
+nvcc -Xcompiler -fPIC -shared ../../../native_image_convolution_sources/image_convolution_cuda_python_bridge.cu -o artifacts/lib/libimage_convolution.so
 ```
 
 ### Sample Execution
 
 ```bash
-./artifacts/bin/convo data/input/input.pgm results/final/out_edge_n5_512.pgm edge_n5 512
-./artifacts/bin/convo_cuda data/input/input.pgm results/final/out_edge_n5_cuda_512.pgm edge_n5 512
+./artifacts/bin/image_convolution_cpu data/input/input.pgm results/final/out_edge_n5_512.pgm edge_n5 512
+./artifacts/bin/image_convolution_cuda data/input/input.pgm results/final/out_edge_n5_cuda_512.pgm edge_n5 512
 ```
 
 ## Environment
