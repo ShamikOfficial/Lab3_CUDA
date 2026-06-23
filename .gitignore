@@ -1,0 +1,27 @@
+# Build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.dylib
+*.so
+*.out
+*.exe
+
+# CUDA profiler and temporary files
+*.nvvp
+*.nsys-rep
+*.qdrep
+
+# Keep benchmark shared libraries used by notebooks
+!benchmarks/image_convolution/case_*/artifacts/lib/libconvo.so
+
+# Python and notebook cache
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# IDE/system files
+.DS_Store
+Thumbs.db
