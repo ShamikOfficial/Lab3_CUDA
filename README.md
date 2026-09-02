@@ -1,6 +1,31 @@
 # CUDA-Accelerated Python Library
 
-A CUDA-focused project for benchmarking matrix multiplication and image convolution workflows across CPU and GPU implementations, with notebook-driven analysis and reproducible outputs.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+[![CUDA](https://img.shields.io/badge/CUDA-GPU-76B900?style=flat-square&logo=nvidia&logoColor=white)]()
+[![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python&logoColor=white)]()
+
+> GPU-accelerated matrix multiplication and image convolution benchmarks — CPU vs CUDA with reproducible artifacts and a full project report.
+
+---
+
+## Problem
+
+Numerical Python workloads on CPU become bottlenecks for large matrix operations and image convolution. Understanding where custom CUDA kernels deliver meaningful speedups requires rigorous, reproducible benchmarking.
+
+## Solution
+
+Custom C/CUDA implementations for image convolution and matrix multiplication, benchmarked against CPU baselines with Jupyter-driven analysis, compiled artifacts, and documented results.
+
+## Key Results
+
+| Workload | Implementations Compared |
+|----------|-------------------------|
+| Matrix multiplication | CPU, naive CUDA, optimized CUDA, cuBLAS |
+| Image convolution | CPU (`gcc`), CUDA (`nvcc`), Python bridge (`.so`) |
+| Artifacts | Reproducible binaries, output images, timing plots |
+| Report | Full methodology in `docs/report/CUDA_Project_Report_Final.pdf` |
+
+---
 
 ## Project Goals
 
